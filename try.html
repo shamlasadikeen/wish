@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Brownie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f5f5dc; /* Beige background */
+        }
+
+        h1 {
+            color: #e07b39; /* Burnt Orange */
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        #generateLink {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            font-size: 20px;
+            text-decoration: none;
+            background-color: #e07b39; /* Burnt Orange */
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #generateLink:hover {
+            background-color: #b65729;
+        }
+
+        #brownieContainer {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .brownie {
+            width: 180px;
+            height: 120px;
+            background: linear-gradient(to bottom, #8c4b2f, #5c2e1e);
+            border-radius: 15px;
+            margin: 20px auto;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .icing {
+            width: 160px;
+            height: 70px;
+            background: radial-gradient(circle, #7b3f1c, #5c2e1e);
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .drip {
+            width: 20px;
+            height: 30px;
+            background: radial-gradient(circle, #7b3f1c, #5c2e1e);
+            border-radius: 10px 10px 20px 20px;
+            position: absolute;
+            top: 60px;
+        }
+
+        .drip:nth-child(1) {
+            left: 20px;
+        }
+
+        .drip:nth-child(2) {
+            left: 60px;
+        }
+
+        .drip:nth-child(3) {
+            left: 100px;
+        }
+
+        .sprinkle {
+            width: 6px;
+            height: 6px;
+            background-color: #dce4c9; /* Light Green */
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .sprinkle:nth-child(odd) {
+            background-color: #f5f5dc; /* Beige */
+        }
+
+        .sprinkle:nth-child(even) {
+            background-color: #e07b39; /* Burnt Orange */
+        }
+    </style>
+</head>
+<body>
+    <h1>Merry Christmas!</h1>
+    <a href="#" id="generateLink">Generate a Delicious Brownie</a>
+    <div id="brownieContainer"></div>
+
+    <script>
+        document.getElementById('generateLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            const container = document.getElementById('brownieContainer');
+            container.innerHTML = ''; // Clear any existing content
+            container.style.display = 'block';
+
+            // Create the brownie element
+            const brownie = document.createElement('div');
+            brownie.classList.add('brownie');
+
+            // Add icing
+            const icing = document.createElement('div');
+            icing.classList.add('icing');
+
+            // Add icing drips
+            for (let i = 0; i < 3; i++) {
+                const drip = document.createElement('div');
+                drip.classList.add('drip');
+                icing.appendChild(drip);
+            }
+
+            brownie.appendChild(icing);
+
+            // Add sprinkles
+            for (let i = 0; i < 20; i++) {
+                const sprinkle = document.createElement('div');
+                sprinkle.classList.add('sprinkle');
+
+                // Randomize sprinkle position
+                sprinkle.style.top = `${Math.random() * 60 + 5}px`;
+                sprinkle.style.left = `${Math.random() * 140 + 10}px`;
+                icing.appendChild(sprinkle);
+            }
+
+            // Append the brownie to the container
+            container.appendChild(brownie);
+        });
+    </script>
+</body>
+</html>
